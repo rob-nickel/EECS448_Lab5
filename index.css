@@ -1,0 +1,18 @@
+body{
+        background-color: black;
+        color: White;
+}
+
+a{
+        color: Orchid;
+}
+
+a.gitLink{
+        color: DeepSkyBlue;
+        font-size: 20;
+}
+
+a.header{
+        font-size: 40;
+        color: White;
+}
