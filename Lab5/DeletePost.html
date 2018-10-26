@@ -1,0 +1,56 @@
+<html>
+<head>
+        <title> Delete Posts </title>
+</head>
+<body>
+        <b><u>Delete Posts:</b></u><br><br>
+        <form action="DeletePost.php" method="POST">
+        <table border=2>
+                <tr><th>Number</th><th> Posts </th><th> Author</th><th>Delete?</th>
+                </tr>
+                <?php
+                $mysqli = new mysqli("mysql.eecs.ku.edu", "r036n285", "Apohnuj3", "r036n285");
+                if ($mysqli->connect_errno) {
+                        printf("Connect failed: %s\n", $mysqli->connect_error);
+                        exit();
+                }
+
+                if ($result = $mysqli->query("SELECT * FROM Posts")){
+                        while ($row = $result->fetch_assoc()){
+                                echo "<tr>";
+                                $post = $row["content"];
+                                $author = $row["author_id"];
+                                $post_id = $row["post_id"];
+                                echo "<td>" . $post_id . "</td>";
+                                echo "<td>" . $post . "</td>";
+                                echo "<td>" . $author . "</td>";
+                                echo "<td> <input type='checkbox' name='arrayOfCheckboxes[]' value='$post_id'> </td>";
+                                echo "</tr>";
+                        }
+                }
+                $mysqli->close();
+                ?>
+        </table> <br>
+        <input type="submit" value="Confirm Deletion">
+        </form>
+
+
+
+
+
+        <!-- <?php
+        $mysqli = new mysqli("mysql.eecs.ku.edu", "r036n285", "Apohnuj3", "r036n285");
+        if ($mysqli->connect_errno) {
+                printf("Connect failed: %s\n", $mysqli->connect_error);
+                exit();
+        }
+
+        if ($result = $mysqli->query("SELECT * FROM Users")){
+                echo "<b><u>Users:</b></u><br>";
+                while ($row = $result->fetch_assoc()){
+                        printf ("%s \n", $row["user_id"]);
+                        echo "<br>";
+                }
+        }
+
+        ?> -->
